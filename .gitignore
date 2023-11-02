@@ -1,0 +1,9 @@
+
+.gitattributes
+.idea/.name
+.idea/Cory Althoff.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+pyvenv.cfg
