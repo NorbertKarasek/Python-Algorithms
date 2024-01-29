@@ -10,8 +10,25 @@ a_list = [1,8,32,91,5,15,9,100,3]
 
 print(linear_search(a_list, 91))
 print(91 in a_list)
-
 print('a' in 'automatyzacja')
+
+print("-----------\n")
+
+#Wyszukiwanie najmniejszej liczby
+
+b_list = [8,32,91,5,1,15,9,100,3]
+def find_smallest(a_list):
+    smallest = a_list[0]
+    smallest_index = 0
+    for i in range (1, len(a_list)):
+        if a_list[i] < smallest:
+            smallest = a_list[i]
+            smallest_index = i
+    #print(f"Najmniejsza liczba w tablicy to: {smallest}")
+    #print(f"Jest na indeksie: [{smallest_index}]")
+    return smallest_index
+
+find_smallest(b_list)
 
 print("-----------\n")
 

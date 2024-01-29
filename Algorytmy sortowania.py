@@ -1,3 +1,5 @@
+import Algorytmy_wyszukiwania as Aw
+
 # Sortowanie bąbelkowe
 
 def bubble_sort(a_list):
@@ -107,3 +109,30 @@ print(numbers_1)
 words_1.sort(key=len)
 print(words_1)
 
+#Sortowanie szybkie
+
+list_of_numbers = [10,5,2,3]
+print(f"\n{list_of_numbers}")
+def quicksort(a_list):
+    if len(a_list) < 2:
+        return a_list
+    else:
+        pivot = a_list[0]
+        less = [i for i in a_list[1:] if i <= pivot]
+        greater = [i for i in a_list[1:] if i > pivot]
+        return quicksort(less) + [pivot] + quicksort(greater)
+
+print("Quicksort:")
+print(quicksort(list_of_numbers))
+
+#Przy pomocy Algorytmy_wyszukiwania.find_smallest() algorytmu można napisać sortowanie poprzez wybieranie.
+
+def selection_sort(a_list):
+    new_array = []
+    for i in range (len(a_list)):
+        smallest = Aw.find_smallest(a_list)
+        new_array.append(a_list.pop(smallest))
+    return new_array
+
+print("SelectionSort:")
+print(selection_sort(list_of_numbers))
