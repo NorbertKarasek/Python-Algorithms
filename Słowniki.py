@@ -1,13 +1,22 @@
+
+# tablica skrótów z cenami  oraz nazwami owoców, owoc-klucz, cena-wartość
 fruits = {'banana': 1.76,
           'apple': 4.23,
           'strawberry': 2.25,
           'pineapple': 7.70}
 
-fruits_keys = fruits.keys() #zwraca same klucze słownika
-print(fruits_keys)
-fruits_viev = fruits.items() #zwraca listę tupli[(klucz, wartość)] które są zawartością słownika fruits []-lista ()-tuple
-print(fruits_viev)
+print(fruits)
+# zwraca słownik/tablice skrótów {'banana': 1.76, 'apple': 4.23, 'strawberry': 2.25, 'pineapple': 7.7}
 
+fruits_keys = fruits.keys()
+print(fruits_keys)
+# keys() zwraca same klucze słownika, dict_keys(['banana', 'apple', 'strawberry', 'pineapple'])
+
+fruits_viev = fruits.items()
+print(fruits_viev)
+#zwraca listę tupli[(klucz, wartość)] które są zawartością słownika fruits []-lista ()-tuple
+
+#tuple możemy przeiterować i stworzyć z nich osobne listy
 fruits_list = []
 fruits_prices = []
 for fruit, price in fruits_viev:
@@ -18,3 +27,43 @@ print(fruits_list)
 print(fruits_prices)
 print(fruits['banana'])
 print(fruits['apple'])
+
+print('----------------\n')
+
+# Przykład 1: Utworzenie słownika z listy kluczy
+keys = ['a', 'b', 'c']
+my_dict = dict.fromkeys(keys)
+print(my_dict)
+# Wynik: {'a': None, 'b': None, 'c': None}
+
+# Przykład 2: Utworzenie słownika z listy kluczy i wartości domyślnych
+default_value = 0
+my_dict_with_defaults = dict.fromkeys(keys, default_value)
+print(my_dict_with_defaults)
+# Wynik: {'a': 0, 'b': 0, 'c': 0}
+
+print('----------------\n')
+
+
+phone_book = {}
+
+phone_book['Norbert'] = "123-456-789"
+phone_book['Madzia'] = "987-654-321"
+phone_book['Abi'] = "123-987-456"
+print(phone_book)
+
+default_relation = None
+relations = phone_book.fromkeys(phone_book, default_relation)
+man = 'Chłopisko'
+woman = 'Kobiecita'
+dog = 'Psiak'
+print(relations)
+relations['Norbert'] = man
+relations['Madzia'] = woman
+relations['Abi'] = dog
+print(relations)
+
+reverse_phone_book = {v: phone_book[k] for k, v in relations.items()}
+print(reverse_phone_book)
+
+# {klucz_wynikowy: wartość_wynikowa for element in sekwencja}
