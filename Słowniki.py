@@ -52,6 +52,9 @@ phone_book['Madzia'] = "987-654-321"
 phone_book['Abi'] = "123-987-456"
 print(phone_book)
 
+print(phone_book.get('Norbert')) #Zwraca wartość pod kluczem
+print(phone_book.get('Janek')) #Zwraca wartość pod kluczem - jeżeli klucza nie ma to zwraca None
+
 default_relation = None
 relations = phone_book.fromkeys(phone_book, default_relation)
 man = 'Chłopisko'
@@ -63,7 +66,28 @@ relations['Madzia'] = woman
 relations['Abi'] = dog
 print(relations)
 
+# {klucz_wynikowy: wartość_wynikowa for element in sekwencja}
 reverse_phone_book = {v: phone_book[k] for k, v in relations.items()}
 print(reverse_phone_book)
 
-# {klucz_wynikowy: wartość_wynikowa for element in sekwencja}
+print('\n\n **** WYBORY *****\n')
+
+voted_list = {}
+voted_list['Michał'] = 'Tusk'
+voted_list['Konrad'] = 'Kaczka'
+voted_list['Zbych'] = None
+
+#Proste użycie, jeżeli jest coś pod kluczem to znaczy że głos był już oddany. Złożoność stała !
+def vote (voter,candidate):
+    if voted_list.get(voter):
+        print(f'Uciekaj {voter}, już głosowałeś')
+    else:
+        voted_list[voter] = candidate
+        print(f'Gratulacje {voter}, Zagłosowałeś na {candidate}')
+
+vote('Michał', 'Lepper')
+vote('Zbych', 'Bidon')
+vote('Zbych', 'Obama')
+
+
+print('\n**** PO WYBORACH ****\n')
