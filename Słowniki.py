@@ -5,12 +5,22 @@ fruits = {'banana': 1.76,
           'strawberry': 2.25,
           'pineapple': 7.70}
 
+fruits2= {'coconut': 8.25,
+          'banana': 3.40} # do późniejszego update()
+
+
+print(fruits['banana'])#zwraca wartość klucza, 1.76
+print(fruits['apple'])
 print(fruits)
 # zwraca słownik/tablice skrótów {'banana': 1.76, 'apple': 4.23, 'strawberry': 2.25, 'pineapple': 7.7}
 
 fruits_keys = fruits.keys()
 print(fruits_keys)
 # keys() zwraca same klucze słownika, dict_keys(['banana', 'apple', 'strawberry', 'pineapple'])
+
+fruit_values = fruits.values()
+print(fruit_values)
+# values() zwraca same wartości słwonika, dict_values([1.76, 4.23, 2.25, 7.7])
 
 fruits_viev = fruits.items()
 print(fruits_viev)
@@ -23,10 +33,19 @@ for fruit, price in fruits_viev:
     fruits_list.append(fruit)
     fruits_prices.append(price)
 
+print('\n-osobne listy z kluczem i z wartośćią-')
 print(fruits_list)
 print(fruits_prices)
-print(fruits['banana'])
-print(fruits['apple'])
+print('----------------\n')
+
+fruits.__delitem__('apple') #usuwamy parę klucz-wartość
+print(fruits.pop('banana')) #zabieramy samą wartość klucza
+old_fruits = fruits.copy() # tworzymy kopię słownika
+fruits.update(fruits2) # dodaje kolejną listę skrótow, takie same klucze uaktualnia a nowe dodaje
+print(old_fruits)
+print(fruits)
+fruits.clear() # czyści cały słownik
+print(fruits)
 
 print('----------------\n')
 
@@ -70,6 +89,13 @@ print(relations)
 reverse_phone_book = {v: phone_book[k] for k, v in relations.items()}
 print(reverse_phone_book)
 
+print('\nponiżej krótko metoda setdefault()')
+value_norbert = phone_book.setdefault('Norbert', '000-000-000') # W tym przypadku zwraca wartośc 'Norbert'
+value_zbyszek = phone_book.setdefault('Zbyszek', '000-000-000') # W tym przypadu tworzy klucz Zbyszek z wartością obok(domyślną)
+print(value_norbert)
+print(phone_book.get('Zbyszek'))
+print(value_zbyszek)
+
 print('\n\n **** WYBORY *****\n')
 
 voted_list = {}
@@ -88,6 +114,5 @@ def vote (voter,candidate):
 vote('Michał', 'Lepper')
 vote('Zbych', 'Bidon')
 vote('Zbych', 'Obama')
-
 
 print('\n**** PO WYBORACH ****\n')
