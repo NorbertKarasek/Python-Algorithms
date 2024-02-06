@@ -14,7 +14,7 @@ class Vertex:
         return self.connections[vertex]
 
     def __str__(self):
-        return f'Zawartość key wierzchołka to {self.key}\njego połączenia to {self.connections} gdzie :10,15 to waga krawędzi, reszta to obiekt'
+        return f'Zawartość key wierzchołka to {self.key}\njego połączenia to {self.connections}'
 
 class Graph:
     def __init__(self):

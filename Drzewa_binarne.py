@@ -90,6 +90,7 @@ tree.right_child.insert_left(5)
 tree.right_child.left_child.insert_left(7)
 tree.right_child.left_child.insert_right(8)
 
+#funkcje przeszukiwania wszerz
 print('------------\nPREORDER')
 
 def preorder(tree):
