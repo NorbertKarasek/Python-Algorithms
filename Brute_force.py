@@ -12,7 +12,7 @@ print("------------\n")
 import time
 start = time.time()
 
-pin = 000000
+pin = 72653
 n = len(str(pin)) # ile ma cyfr
 print(f"pin ma {n} cyfr/y")
 

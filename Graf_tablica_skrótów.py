@@ -13,7 +13,7 @@ class MangoSeller:
         return self.name
 
 
-ja = MangoSeller('norbert')
+norbert = MangoSeller('norbert')
 alicja = MangoSeller('alicja')
 bartek = MangoSeller('bartek')
 cecylia = MangoSeller('cecylia')
@@ -24,7 +24,7 @@ jarek = MangoSeller('jarek', is_seller=True)
 # Klasa i pare obiektów na potrzeby przeszukiwania wszerz
 
 graph = {}
-graph[ja] = [alicja, bartek, cecylia]
+graph[norbert] = [alicja, bartek, cecylia]
 graph[bartek] = [janusz, patrycja]
 graph[alicja] = [patrycja]
 graph[cecylia] = [tamara, jarek]
@@ -36,22 +36,25 @@ graph[jarek] = []
 # wyszukiwanie wszerz z pomocą kolejki
 from collections import deque
 
-search_queue = deque()
-search_queue += graph[ja]
-print(search_queue)
+def search_for_seller(name): # Tu podajemy osobę która szuka sprzedawcy, i od niej zaczniemy szukać po znajomych
+    search_queue = deque() # tworzymy kolejkę
+    search_queue += graph[name] # dodajemy do niej naszą osobę (obiekt)
+    searched = [] # tworzymy pustą listę na sprawdzone osoby
 
-def search_for_seller(search_queue): # Tu podajemy kolejkę w której jest tylko osoba która poszukuje sprzedawcy
     while search_queue:  # dopóki kolejka nie jest pusta
-        person = search_queue.popleft()  # pobiera pierwszy element z kolejki
-        if MangoSeller.person_is_seller(person):
-            print(person.name.capitalize() + ' sprzedaje mango !')
-            return True
-        else:
-            search_queue += graph[person]
+        person = search_queue.popleft() # pobiera pierwszy element z kolejki
+        if person not in searched: # jeżeli osoba nie była już przeszukana
+            if MangoSeller.person_is_seller(person):
+                print(person.name.capitalize() + ' sprzedaje mango !')
+                return True
+            else:
+                search_queue += graph[person]
+                searched.append(person)
+    print(f'{name} nikt z twoich znajomych nie sprzedaje mango')
     return False
+
 # pamietajmy że ten graf jest skierowany, więc tutaj najlepiej będzie szukać od norberta, wtedy przeszuka całego grafa,
 # w przypadku nieskierowanego nie miało by to różnicy, itak szukałby wszędzie
 
-search_for_seller(search_queue) # dajemy mu naszą kolejkę w której jestem ja
 
-name = "witek"
+search_for_seller(norbert) # dajemy mu naszą osobę która szuka sprzedawcy
