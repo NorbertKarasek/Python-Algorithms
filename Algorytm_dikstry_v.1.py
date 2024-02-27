@@ -66,9 +66,17 @@ def dijkstra(graph, costs, parents):
                 parents[n] = node
         processed.append(node)
         node = find_lowest_cost_node(costs, processed)
-    print(f'najmniejsze koszty dotarcia do wierzchołków {costs}')
-    print(f'najtańsza droga którą musi podążyc aby otrzymać takie koszta (do tego wierzchołka : tą drogą){parents}')
-    return costs, parents
+
+    # Znajdź najkrótszą ścieżkę
+    shortest_path = ['meta']
+    while parents[shortest_path[-1]] != 'start':
+        shortest_path.append(parents[shortest_path[-1]])
+    shortest_path.append('start')
+    shortest_path.reverse()
+    print(f'Najmniejsze koszty dotarcia do wierzchołków {costs}')
+    print(f'Rodzice najkrótszych scieżek do wierzchołków {parents}')
+    print('Najkrótsza scieżka', shortest_path)
+    return shortest_path
 
 
 dijkstra(graphA, costs_of_graphA_edges, parents_of_graph_vertices)
