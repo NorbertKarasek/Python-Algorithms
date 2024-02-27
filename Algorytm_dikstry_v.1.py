@@ -9,15 +9,23 @@
 # WSZYSTKO BĘDZIE SIĘ AKUTUALIZOWAĆ PODCZAS WYKONIANIA ALGORYTMU #
 
 graphA = {'start': {}}
-graphA['start']['A'] = 6
+graphA['start']['A'] = 5
 graphA['start']['B'] = 2
 
 graphA['A'] = {}
-graphA['A']['meta'] = 1
+graphA['A']['D'] = 2
+graphA['A']['C'] = 4
 
 graphA['B'] = {}
-graphA['B']['A'] = 3
-graphA['B']['meta'] = 5
+graphA['B']['A'] = 8
+graphA['B']['D'] = 7
+
+graphA['C'] = {}
+graphA['C']['D'] = 6
+graphA['C']['meta'] = 3
+
+graphA['D'] = {}
+graphA['D']['meta'] = 1
 
 graphA['meta'] = {}
 
@@ -29,10 +37,10 @@ print('-------------------\n')
 
 # Tablica skrótów z kosztami przechodzenia po wierzchołkach
 infinity = float('inf')  # oznacza nieskończoność
-costs_of_graphA_edges = {'A': 6, 'B': 2, 'meta': infinity}
+costs_of_graphA_edges = {'A': 5, 'B': 2, 'C': infinity,'D': infinity,'meta': infinity}
 
 # Tabela skrótów dla rodziców ('A'-wierzchołek : 'rodzic')
-parents_of_graph_vertices = {'A': 'start', 'B': 'start', 'meta': None}
+parents_of_graph_vertices = {'A': 'start', 'B': 'start', 'C': None,'D': None, 'meta': None}
 
 
 def find_lowest_cost_node(costs, processed):
