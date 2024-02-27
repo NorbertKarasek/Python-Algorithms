@@ -1,9 +1,12 @@
 # Inny sposób implementacji algorytmu Dijkstry
 
-# Cały nasz graf - budujemy symbolicznego grafa - graphA
-# startowy wierzchołek i jego krawędzie do sąsiadów
-# 'A', 'B', 'meta' staje się wierzchołkiem(słownikiem) i podajemy jego sąsiadów
-# 'meta również musi być słownikiem aby być wierzchołkiem
+# Budujemy symbolicznego grafa - graphA #
+# Budujemy tablicę skrótów kosztu dotarcia do jego wierzchołków #
+# podając koszt dotarcia tylko do pierwszych, reszta jako infinity #
+# Budujemy tablicę skrótów rodziców kolejnych wierzchołków #
+# podając tylko rodziców pierwszych wierzchołków, reszta jako None #
+
+# WSZYSTKO BĘDZIE SIĘ AKUTUALIZOWAĆ PODCZAS WYKONIANIA ALGORYTMU #
 
 graphA = {'start': {}}
 graphA['start']['A'] = 6
@@ -22,6 +25,7 @@ graphA['meta'] = {}
 print(graphA['start'].keys())  # wyświetlimy jego sąsiadów, czyli jest on połączony krawędziami z tymi wierzchołkami
 print(graphA['start']['A'])  # waga krawędzi do wierzchołka A
 print(graphA['start']['B'])
+print('-------------------\n')
 
 # Tablica skrótów z kosztami przechodzenia po wierzchołkach
 infinity = float('inf')  # oznacza nieskończoność
@@ -54,8 +58,9 @@ def dijkstra(graph, costs, parents):
                 parents[n] = node
         processed.append(node)
         node = find_lowest_cost_node(costs, processed)
+    print(f'najmniejsze koszty dotarcia do wierzchołków {costs}')
+    print(f'najtańsza droga którą musi podążyc aby otrzymać takie koszta (do tego wierzchołka : tą drogą){parents}')
     return costs, parents
 
 
-# Przykładowe wywołanie
-print(dijkstra(graphA, costs_of_graphA_edges, parents_of_graph_vertices))
+dijkstra(graphA, costs_of_graphA_edges, parents_of_graph_vertices)
