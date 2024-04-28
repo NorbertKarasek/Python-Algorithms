@@ -22,10 +22,31 @@ graphA['B']['D'] = 7
 
 graphA['C'] = {}
 graphA['C']['D'] = 6
-graphA['C']['meta'] = 3
+graphA['C']['E'] = 3
+graphA['C']['F'] = 2
 
 graphA['D'] = {}
-graphA['D']['meta'] = 1
+graphA['D']['E'] = 5
+
+graphA['E'] = {}
+graphA['E']['F'] = 2
+graphA['E']['meta'] = 200
+
+graphA['F'] = {}
+graphA['F']['G'] = 4
+graphA['F']['H'] = 5
+graphA['F']['meta'] = 32
+
+graphA['G'] = {}
+graphA['G']['H'] = 2
+graphA['G']['I'] = 1
+
+graphA['H'] = {}
+graphA['H']['I'] = 5
+graphA['H']['I'] = 1
+
+graphA['I'] = {}
+graphA['I']['meta'] = 1
 
 graphA['meta'] = {}
 
@@ -37,10 +58,28 @@ print('-------------------\n')
 
 # Tablica skrótów z kosztami przechodzenia po wierzchołkach
 infinity = float('inf')  # oznacza nieskończoność
-costs_of_graphA_edges = {'A': 5, 'B': 2, 'C': infinity,'D': infinity,'meta': infinity}
+costs_of_graphA_edges = {'A': 5,
+                         'B': 2,
+                         'C': infinity,
+                         'D': infinity,
+                         'E': infinity,
+                         'F': infinity,
+                         'G': infinity,
+                         'H': infinity,
+                         'I': infinity,
+                         'meta': infinity}
 
 # Tabela skrótów dla rodziców ('A'-wierzchołek : 'rodzic')
-parents_of_graph_vertices = {'A': 'start', 'B': 'start', 'C': None,'D': None, 'meta': None}
+parents_of_graph_vertices = {'A': 'start',
+                             'B': 'start',
+                             'C': None,
+                             'D': None,
+                             'E': None,
+                             'F': None,
+                             'G': None,
+                             'H': None,
+                             'I': None,
+                             'meta': None}
 
 
 def find_lowest_cost_node(costs, processed):
