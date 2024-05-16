@@ -14,11 +14,12 @@ def bubble_sort(a_list):
             return a_list
     return a_list
 
-numbers = [54,62,34,4,3,65,1]
-print(numbers)
+
+numbers = [54,62,34,4,3,65,1,15,2,3,234]   # Lista do posortowania
+print(f'Lista przed posortowaniem {numbers}')
 
 bubble_sort(numbers)
-print(numbers)
+print(f'Lista po portowaniu {numbers}')
 
 print("---------")
 
@@ -84,7 +85,7 @@ def merge_sort(a_list):
             alist_ind +=1
 
         while right_ind < len(right_half):
-            alist[alist_ind]=right_half[right_ind]
+            a_list[alist_ind]=right_half[right_ind]
             right_ind +=1
             alist_ind +=1
 
@@ -122,6 +123,7 @@ def quicksort(a_list):
         greater = [i for i in a_list[1:] if i > pivot]
         return quicksort(less) + [pivot] + quicksort(greater)
 
+print(list_of_numbers)
 print("Quicksort:")
 print(quicksort(list_of_numbers))
 
