@@ -1,31 +1,40 @@
 class BinaryTree:
-    def __init__(self,value):
+    def __init__(self, value):
+        # Inicjalizuje węzeł drzewa z podaną wartością
         self.key = value
         self.left_child = None
         self.right_child = None
 
-    def insert_left(self,value):
-        if self.left_child == None:
+    def insert_left(self, value):
+        # Wstawia nowy węzeł jako lewego dziecka
+        if self.left_child is None:
+            # Jeśli lewy dziecko nie istnieje, tworzy nowe
             self.left_child = BinaryTree(value)
         else:
+            # Jeśli lewy dziecko już istnieje, wstawia nowy węzeł jako rodzica dla istniejącego lewego dziecka
             bin_tree = BinaryTree(value)
             bin_tree.left_child = self.left_child
             self.left_child = bin_tree
 
-    def insert_right(self,value):
-        if self.right_child == None:
+    def insert_right(self, value):
+        # Wstawia nowy węzeł jako prawego dziecka
+        if self.right_child is None:
+            # Jeśli prawe dziecko nie istnieje, tworzy nowe
             self.right_child = BinaryTree(value)
         else:
+            # Jeśli prawe dziecko już istnieje, wstawia nowy węzeł jako rodzica dla istniejącego prawego dziecka
             bin_tree = BinaryTree(value)
             bin_tree.right_child = self.right_child
             self.right_child = bin_tree
 
-    def bredth_first_search(self,n):
+    def breadth_first_search(self, n):
+        # Wykonuje przeszukiwanie wszerz (BFS) drzewa, aby znaleźć węzeł z daną wartością
         current = [self]
         next = []
         while current:
             for node in current:
                 if node.key == n:
+                    # Zwraca True, jeśli znajdzie węzeł z daną wartością
                     return True
                 if node.left_child:
                     next.append(node.left_child)
@@ -33,24 +42,27 @@ class BinaryTree:
                     next.append(node.right_child)
             current = next
             next = []
+        # Zwraca False, jeśli nie znajdzie węzła z daną wartością
         return False
 
     def show_nodes(self):
+        # Zwraca listę wszystkich węzłów w drzewie, przechodząc je w porządku wszerz
         current = [self]
         next = []
-        list = []
+        nodes = []
         while current:
             for node in current:
                 if node.left_child:
                     next.append(node.left_child)
                 if node.right_child:
                     next.append(node.right_child)
-                list.append(node.key)
+                nodes.append(node.key)
             current = next
             next = []
-        return list
+        return nodes
 
     def invert(self):
+        # Odwraca drzewo, zamieniając miejscami lewe i prawe dziecko każdego węzła, przechodząc drzewo w porządku wszerz
         current = [self]
         next = []
         while current:
@@ -66,74 +78,66 @@ class BinaryTree:
             next = []
 
     def invert_rec(self):
+        # Rekurencyjnie odwraca drzewo, zamieniając miejscami lewe i prawe dziecko każdego węzła
         if self:
             change = self.left_child
             self.left_child = self.right_child
             self.right_child = change
-            invert_rec(self.left_child)
-            invert_rec(self.right_child)
+            if self.left_child:
+                self.left_child.invert_rec()
+            if self.right_child:
+                self.right_child.invert_rec()
 
     def has_leaf_nodes(self):
+        # Sprawdza, czy węzeł ma jakiekolwiek dzieci (liście)
         if self.left_child or self.right_child:
             return True
         else:
             return False
 
+    def in_order_traversal(self, node, node_list):
+        # Przechodzenie drzewa w kolejności infiksowej (in-order) i zapisywanie węzłów do listy
+        if node:
+            self.in_order_traversal(node.left_child, node_list)
+            node_list.append(node.key)
+            self.in_order_traversal(node.right_child, node_list)
 
+    def balance_tree(self):
+        # Przekształcenie drzewa do listy węzłów w kolejności infiksowej
+        node_list = []
+        self.in_order_traversal(self, node_list)
+        # Tworzenie zrównoważonego drzewa binarnego z posortowanej listy
+        return self.sorted_list_to_bst(node_list)
 
-tree = BinaryTree(1)
-tree.insert_left(4)
-tree.insert_left(2)
-tree.insert_right(6)
-tree.insert_right(3)
-tree.right_child.insert_left(5)
-tree.right_child.left_child.insert_left(7)
-tree.right_child.left_child.insert_right(8)
+    def sorted_list_to_bst(self, node_list):
+        # Budowanie zrównoważonego drzewa binarnego z posortowanej listy węzłów
+        if not node_list:
+            return None
+        mid = len(node_list) // 2
+        root = BinaryTree(node_list[mid])
+        root.left_child = self.sorted_list_to_bst(node_list[:mid])
+        root.right_child = self.sorted_list_to_bst(node_list[mid + 1:])
+        return root
 
-#funkcje przeszukiwania wszerz
-print('------------\nPREORDER')
+# Przykład użycia
 
-def preorder(tree):
-    if tree:
-        print(tree.key)
-        preorder(tree.left_child)
-        preorder(tree.right_child)
+# Tworzenie drzewa binarnego
+bt = BinaryTree(10)
+bt.insert_left(5)
+bt.insert_right(20)
+bt.left_child.insert_left(3)
+bt.left_child.insert_right(8)
+bt.right_child.insert_left(15)
+bt.right_child.insert_right(25)
+bt.left_child.left_child.insert_left(2)
+bt.left_child.left_child.insert_right(4)
+bt.right_child.right_child.insert_right(30)
 
-preorder(tree)
-print('-------------\nPOSTORDER')
+print("Przed równoważeniem:")
+print(bt.show_nodes())
 
-def postorder(tree):
-    if tree:
-        postorder(tree.left_child)
-        postorder(tree.right_child)
-        print(tree.key)
+# Równoważenie drzewa
+bt = bt.balance_tree()
 
-postorder(tree)
-print('--------------\nINORDER')
-
-def inorder(tree):
-    if tree:
-        inorder(tree.left_child)
-        print(tree.key)
-        inorder(tree.right_child)
-
-inorder(tree)
-
-print('-------------\n INVERTED PREORDER')
-tree.invert()
-preorder(tree)
-
-print('---------------\nrecursively invert')
-def invert_rec(tree):
-    if tree:
-        change = tree.left_child
-        tree.left_child = tree.right_child
-        tree.right_child = change
-        invert_rec(tree.left_child)
-        invert_rec(tree.right_child)
-
-invert_rec(tree)
-preorder(tree)
-
-print(tree.has_leaf_nodes())
-print(tree.show_nodes())
+print("Po równoważeniu:")
+print(bt.show_nodes())
