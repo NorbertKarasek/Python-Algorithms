@@ -43,10 +43,12 @@ print(represent_number.isdigit()) # isdigit() Zwraca True jeżeli wskażemy licz
 
 s = 'Kup 2 w cenie 1'
 n1 = [c for c in s if c.isdigit()] # tworzy listę samych numerów, używając funkcji pythona isdigit()
-n2 = [c for c in s if c.isdigit()][-1] # ^^^ to samo plus wyświetla tylko ostatni element stworzonej listy
+n2 = [c for c in s if c.isdigit()][-1]# ^^^ to samo plus wyświetla tylko ostatni element stworzonej listy
+n3 = [c for c in s if not c.isdigit() and c != ' ']
 print(s)
 print(n1)
 print(n2)
+print(n3)
 
 promotion = 'Kupcie 2 a 3 dostaniecie gratis, 5 nie ma '
 numbers_inp_promotion = [element for element in promotion if element.isdigit()]
