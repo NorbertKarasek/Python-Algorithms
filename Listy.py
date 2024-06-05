@@ -201,3 +201,30 @@ print(numbers)
 numbers = tuple(x for x in range(0,20,2)) # Tworzy krotkę od 0 do 18 z krokiem 2
 print(numbers)
 
+# Kontenery w kontenerach
+lists = []
+rap = ['Kanye West', 'Jay Z', 'Eminem', 'Nas']
+rock = ['Bob Dylan', 'The Beatles', 'Led Zeppelin']
+djs = ['Zeds Dead', 'Tiesto']
+
+lists.append(rap)
+lists.append(rock)
+lists.append(djs)
+
+print(lists)
+print(rap)
+rap.append('Kendrick Lamar') # Dodaje Kendricka do rap, jednocześnie do lists
+print(lists)
+print(rap)
+
+locations = []
+la = (34.0522, 188.2437)
+chicago = (41.8781, 87.6298)
+san_francisco = (37.7749, 122.4194)
+
+locations.append(la)
+locations.append(chicago)
+locations.append(san_francisco)
+
+print(locations)
+print(locations[0])
