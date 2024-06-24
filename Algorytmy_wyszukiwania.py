@@ -1,12 +1,17 @@
+import random
+
+
 #Wyszukiwanie liniowe
 
-def linear_search(a_list, n):
+def linear_search(list, n):
     for i in a_list:
         if i == n:
             return True
     return False
 
-a_list = [1,8,32,91,5,15,9,100,3]
+a_list = []
+for i in range(10):
+    a_list.append(random.randint(0,100))
 
 print(linear_search(a_list, 91))
 print(91 in a_list)
@@ -32,23 +37,29 @@ find_smallest(b_list)
 
 print("-----------\n")
 
-sorted_list = [11,12,13,14,15,16,17,18,19,20]
+
+example_list = []
+for i in range(10):
+    example_list.append(random.randint(0,100))
 
 def binary_search(list, n):
+    list = sorted(list)
     first = 0
     last = len(list) - 1
     while last >= first:
         mid = (first + last) // 2
         if list[mid] == n:
+            print(f"Znaleziono liczbę {n} na indeksie {mid}")
             return True
         else:
             if n < list[mid]:
                 last = mid -1
             else:
                 first = mid + 1
+    print(f"Nie znaleziono liczby {n} w tablicy")
     return False
 
-print(binary_search(sorted_list, 12))
+print(binary_search(example_list, 12))
 
 print("---------------")
 
