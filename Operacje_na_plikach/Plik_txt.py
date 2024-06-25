@@ -34,4 +34,7 @@ print(f'Oto odczytana zawartość pliku : \n {file_content}')
 
 # Instrukcją with można otworzyć plik, a po wyjściu z bloku with plik zostanie automatycznie zamknięty. W innym przypadku trzeba pamiętać o zamknięciu pliku.
 with open(path, 'a') as lets_write_more:
-    file_content = lets_write_more.write("""\nTeraz będziemy pisać jeszcze więcej na końcu pliku.""")
+    lets_write_more.write("""\nTeraz będziemy pisać jeszcze więcej na końcu pliku.
+    \nA to kolejna linijka.
+I jeszcze jedna. 
+Cześć, jak smakuje rosół ?""")
