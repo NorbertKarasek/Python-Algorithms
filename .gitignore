@@ -8,3 +8,7 @@
 .idea/modules.xml
 .idea/vcs.xml
 pyvenv.cfg
+War/__pycache__/Wojna.cpython-311.pyc
+War/__pycache__/Gracz.cpython-311.pyc
+War/__pycache__/Karty.cpython-311.pyc
+War/__pycache__/Talia.cpython-311.pyc
