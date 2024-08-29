@@ -69,21 +69,17 @@ for i in range(queue.size()):
 
 from queue import Queue
 
-def clean_queue(a_queue):
-    for i in range(a_queue.qsize()):
-        a_queue.get()
-    print(f'Kolejka została wyczyszczona, zostało {a_queue.qsize()} elementów')
-
 q = Queue()
 q.put('a')
 q.put('b')
 q.put('c')
 print(f'Rozmiar kolejki q to {q.qsize()} elementy')
-def clean_queue(a_queue):
+
+def queue_clean(a_queue):
     for i in range(a_queue.qsize()):
         a_queue.get()
     print(f'Kolejka została wyczyszczona, zostało {a_queue.qsize()} elementów')
-clean_queue(q)
+queue_clean(q)
 
 #Tworzenie kolejki przy użyciu dwóch stosów
 
@@ -148,3 +144,28 @@ print(q2)
 q2.get()
 print(q2)
 q2.get()
+
+#Kolejka priorytetowa
+
+class PriorityQueue:
+    def __init__(self):
+        self.queue = []
+
+    def enqueue(self, data):
+        self.queue.append(data)
+
+    def dequeue(self):
+        try:
+            max = 0
+            for i in range(len(self.queue)):
+                if self.queue[i] > self.queue[max]:
+                    max = i
+            item = self.queue[max]
+            del self.queue[max]
+            return item
+        except IndexError:
+            print()
+            exit()
+
+    def __str__(self):
+        return str(self.queue)
