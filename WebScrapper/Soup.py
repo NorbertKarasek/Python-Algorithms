@@ -8,7 +8,7 @@ class Scraper:
         self.site = site
 
 
-    def scrape(self):
+    def scrape_links(self):
         r = urllib.request.urlopen(self.site) # otwarcie strony - zwraca obiekt html
         html = r.read() # odczytanie zawartości strony - zwraca kod html
         parser = "html.parser" # parser html
@@ -26,4 +26,4 @@ class Scraper:
 
 news = "https://www.wp.pl/" # strona, z której będą pobierane linki
 first_search = Scraper(news) # utworzenie obiektu klasy Scraper
-first_search.scrape() # wywołanie metody scrape() na obiek
+first_search.scrape_links() # wywołanie metody scrape() na obiekcie
