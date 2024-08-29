@@ -1,9 +1,31 @@
+# Opis: Kolejki w Pythonie
+class Queue:
+    def __init__(self):
+        self.items = []
+
+    def is_empty(self):
+        return not bool(self.items)
+
+    def enqueue(self, item):
+        self.items.insert(0, item)
+
+    def dequeue(self):
+        return self.items.pop()
+
+    def size(self):
+        return len(self.items)
+
+    def __str__(self):
+        return str(self.items)
+
+
+# implemenacja kolejki za pomocą listy
 class Node:
     def __init__(self, data, next = None):
         self.data = data
         self.next = next
 
-class Queue:
+class AQueue:
     def __init__(self):
         self.front = None
         self.rear = None
@@ -32,11 +54,15 @@ class Queue:
     def size(self):
         return self._size
 
-queue = Queue()
-queue.enqueue(1)
-queue.enqueue(2)
-queue.enqueue(3)
-for i in range(3):
+queue = AQueue()
+queue.enqueue("BASIA")
+queue.enqueue("KASIA")
+queue.enqueue("ZOSIA")
+queue.enqueue("JANEK")
+queue.enqueue("WAŁEK")
+print(queue.dequeue())
+#poniżej czyścimy kolejkę
+for i in range(queue.size()):
     print(queue.dequeue())
 
 #Wbudowana klasa Queue Pythona:
