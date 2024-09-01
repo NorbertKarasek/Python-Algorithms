@@ -12,3 +12,6 @@ War/__pycache__/Wojna.cpython-311.pyc
 War/__pycache__/Gracz.cpython-311.pyc
 War/__pycache__/Karty.cpython-311.pyc
 War/__pycache__/Talia.cpython-311.pyc
+Logging/aplikacja.log
+Logging/my.log
+.idea/encodings.xml
